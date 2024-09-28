@@ -1,0 +1,38 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('./assets/css/btn.css');
+@import url('./assets/css/form.css');
+@import url('./assets/css/card.css');
+@import url('./assets/css/color.css');
+@import url('./assets/css/font.css');
+@import url('./assets/css/table.css');
+
+/* APP STYLES */
+
+body {
+
+    background-color: #111 !important;
+}
+
+.base-container {
+    background-color: #111;
+    height: 100%;
+    width: 100%;
+    padding-top: 90px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 30px;
+}
+
+.active {
+    font-style: italic;
+    font-weight: bolder !important;
+    color: #DD8118 !important;
+}
+
+.badge {
+    background-color: red !important;
+    color: white;
+    padding: 4px 8px;
+    text-align: center;
+    border-radius: 50px !important;
+}

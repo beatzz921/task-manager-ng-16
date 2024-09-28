@@ -1,0 +1,30 @@
+/* COLOR STYLES */
+.base-color-primary {
+    color: #4A128A;
+}
+
+.base-color-success{
+    color: #09873A;
+}
+
+.base-color-warning {
+    color: #DD8118;
+}
+
+.base-color-danger {
+    color: #ED2B2B;
+}
+
+.base-color-info {
+    color: #23BED0;
+}
+
+.base-color-light {
+    color: #DEEEF0;
+}
+
+.base-color-dark {
+    color: #111;
+}
+
+

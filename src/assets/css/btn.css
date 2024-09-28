@@ -1,0 +1,99 @@
+/* BUTTON STYLES */
+.base-btn-light {
+    background-color: #DEEEF0 !important;
+}
+
+.base-btn-primary {
+    background-color: #4A128A !important;
+    color: white !important;
+}
+
+
+.base-btn-success {
+    background-color: #3BAB41 !important;
+    color: white;
+}
+
+.base-btn-success:hover {
+    background-color: #09873A !important;
+}
+
+
+.base-btn-warning {
+    background-color: #DD8118 !important;
+    color: white;
+}
+
+.base-btn-warning:hover {
+    background-color: #D15918 !important;
+}
+
+
+.base-btn-danger {
+    background-color: #ED2B2B !important;
+    color: white !important;
+}
+
+.btn-margin {
+    margin-right: 12px !important;
+}
+
+
+/* BTN LONG STYLES */
+.base-btn-success-long {
+    background-color: #3BAB41 !important;
+    width: 100%;
+}
+
+.base-btn-success-long:hover {
+    background-color: #09873A !important;
+}
+
+.base-btn-warning-long {
+    background-color: #DD8118 !important;
+    color: white !important;
+    width: 100%;
+}
+
+.base-btn-warning-long:hover {
+    background-color: #D15918 !important;
+}
+
+.base-btn-danger-long {
+    background-color: #ED2B2B !important;
+    color: white !important;
+    width: 100%;
+}
+
+
+/* BTN OUTLINE STYLES */
+.base-btn-outline-primary {
+    color: #4A128A !important;
+    border-color: #4A128A !important;
+}
+
+.base-btn-outline-primary:hover {
+    color: white !important;
+    background-color: #4A128A !important;
+}
+
+.base-btn-outline-info {
+    color: #23BED0 !important;
+    border-color: #23BED0 !important;
+}
+
+.base-btn-outline-info:hover {
+    color: black !important;
+    background-color: #23BED0 !important;
+}
+
+
+.base-btn-outline-light {
+    color: #DEEEF0  !important;
+    border-color: #DEEEF0  !important;
+}
+
+.base-btn-outline-light:hover {
+    color: black !important;
+    background-color: #DEEEF0  !important;
+}

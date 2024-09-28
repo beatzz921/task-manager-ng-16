@@ -1,0 +1,21 @@
+<table class="table table-striped-columns" [@fadeInOut]>
+    <thead>
+        <tr>
+            <th scope="col" class="base-color-primary" *ngFor="let column of columns">{{ column }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <span class="text-white" *ngIf="displayedItems.length == 0">{{ emptyMessage }}</span>
+        <tr *ngFor="let item of displayedItems | search:searchValue:'completed'" style="cursor: pointer;"
+            (click)="onClick(item)" [class.row-clicked]="clicked.includes(item)"
+            [class.row-hover]="hovered.includes(item)" (mouseenter)="onHover(item)" (mouseleave)="onBlur()">
+            <td class="text-white">{{ item.name }}</td>
+            <td class="text-white">{{ item.expirationDate }}</td>
+            <td class="text-white">{{ item.completed }}</td>
+            <td class="text-white"><span *ngFor="let person of item.persons; let isLast = last">
+                    {{ person.fullName }} - (Skills: {{ person.skills.join(', ') }})
+                    <span *ngIf="!isLast">, </span>
+                </span></td>
+        </tr>
+    </tbody>
+</table>

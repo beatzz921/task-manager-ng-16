@@ -1,0 +1,13 @@
+/* CARD STYLES */
+.base-card {
+    background-color: #2d2d2d !important;
+    border-color: #2d2d2d !important;
+    border-radius: 15px !important;
+}
+
+.auth-card{
+    background-color:#111 !important;
+    border-color: #111 !important;
+    border-radius: 0px !important;
+}
+

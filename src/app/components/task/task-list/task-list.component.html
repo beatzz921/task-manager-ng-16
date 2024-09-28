@@ -1,0 +1,22 @@
+<div>
+    <div class="d-flex float-start">
+        <button type="button" class="btn base-btn-outline-primary btn-margin" (click)="onNew()">New</button>
+        <button type="button" class="btn btn-outline-warning btn-margin" (click)="onEdit()"
+            [disabled]="clicked.length === 0 || clicked.length > 1 ">Edit</button>
+        <button type="button" class="btn btn-outline-danger btn-margin" (click)="onDelete()"
+            [disabled]="clicked.length === 0">Delete</button>
+    </div>
+    <div class="d-flex float-end">
+        <app-search></app-search>
+    </div>
+</div>
+<br />
+<br />
+<hr class="base-color-primary" />
+<div class="d-flex justify-content-center" *ngIf="loading; else taskListComponent">
+    <div class="spinner-border base-color-primary" role="status" style="width: 3rem; height: 3rem;">
+    </div>
+</div>
+<ng-template #taskListComponent>
+    <app-task-table [displayedItems]="items" [clicked]="clicked"></app-task-table>
+</ng-template>

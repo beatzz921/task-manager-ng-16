@@ -1,0 +1,27 @@
+/* FORM STYLES */
+.base-form-input {
+    border-color: #4A128A !important;
+    background-color: #2d2d2d !important;
+    border-width: 2px !important;
+    border-style: solid !important;
+
+}
+
+.form-check-input:checked {
+    background-color: #4A128A !important;
+    border-color: #4A128A !important;
+}
+
+.required {
+    color: red;
+}
+
+input,
+textarea,
+select {
+    color: white !important;
+}
+
+.input-ng-invalid {
+    border-color: red !important;
+}

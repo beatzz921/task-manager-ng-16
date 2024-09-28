@@ -1,0 +1,124 @@
+<div class="d-flex justify-content-center" *ngIf="loading; else taskFormComponent">
+    <div class="spinner-border base-color-primary" role="status" style="width: 3rem; height: 3rem;"></div>
+</div>
+<ng-template #taskFormComponent>
+    <div class="card base-card mx-auto" [@fadeInOut]>
+        <div class="card-body text-primary">
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                <div class="row">
+                    <div class="col-md-10">
+                        <h3 class="d-flex justify-content-center text-white"><b>{{ title }}</b></h3>
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-outline-danger" (click)="onCancel()">X</button>
+                    </div>
+                </div>
+                <hr class="base-color-primary" />
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label for="formGroupName" class="form-label text-white">Name<span
+                                class="required">*</span></label>
+                        <input type="text" class="form-control base-form-input" id="formGroupName"
+                            formControlName="name"
+                            [class.input-ng-invalid]="!form.get('name')?.valid && form.get('name')?.touched">
+                        <span *ngIf="!form.get('name')?.valid && form.get('name')?.touched " class="required">Task name
+                            is required</span>
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="formGroupExpirationDate" class="form-label text-white">Expiration Date<span
+                                class="required">*</span></label>
+                        <input type="date" class="form-control base-form-input" id="formGroupExpirationDate"
+                            formControlName="expirationDate"
+                            [class.input-ng-invalid]="!form.get('expirationDate')?.valid && form.get('expirationDate')?.touched">
+                        <span *ngIf="!form.get('expirationDate')?.valid && form.get('expirationDate')?.touched "
+                            class="required">Expiration date is required</span>
+                    </div>
+                </div>
+                <br />
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="formGroupCompleted"
+                        formControlName="completed">
+                    <label class="form-check-label text-white" for="formGroupCompleted">Completed</label>
+                </div>
+                <br />
+                <h5 class="text-white">Assigned Persons</h5>
+                <hr class="base-color-primary" />
+                <button type="button" class="btn base-btn-primary" (click)="addPerson()">Add Person</button>
+                <div formArrayName="persons">
+                    <div *ngFor="let person of persons.controls; let i=index" [formGroupName]="i" [@fadeInOut]>
+                        <br />
+                        <div class="row row-cols-lg-auto g-3 align-items-center">
+                            <div class="col-sm-6">
+                                <label [for]="'formGroupFullName' + i" class="visually-hidden">Fullname<span
+                                        class="required">*</span></label>
+                                <input type="text" class="form-control base-form-input" formControlName="fullName"
+                                    placeholder="Fullname" [id]="'formGroupFullName' + i"
+                                    [class.input-ng-invalid]="!person.get('fullName')?.valid && person.get('fullName')?.touched">
+                                <span *ngIf="!person.get('fullName')?.valid && person.get('fullName')?.touched"
+                                    class="required">Fullname is required</span>
+                                <span
+                                    *ngIf="person.get('fullName')?.hasError('minlength') && person.get('fullName')?.touched"
+                                    class="required">
+                                    - Fullname must be at least 5 characters long.
+                                </span>
+                                <span
+                                    *ngIf="person.get('fullName')?.hasError('fullNameNotUnique') && person.get('fullName')?.touched"
+                                    class="required">
+                                    - Fullname already exists in the task.
+                                </span>
+                            </div>
+                            <div class="col-sm-3">
+                                <label [for]="'formGroupAge' + i" class="visually-hidden">Age<span
+                                        class="required">*</span></label>
+                                <input formControlName="age" type="number" class="form-control base-form-input"
+                                    [id]="'formGroupAge' + i" placeholder="Age"
+                                    [class.input-ng-invalid]="!person.get('age')?.valid && person.get('age')?.touched">
+                                <span *ngIf="!person.get('age')?.valid && person.get('age')?.touched"
+                                    class="required">Age is required</span>
+                                <span *ngIf="person.get('age')?.hasError('min') && person.get('age')?.touched"
+                                    class="required">
+                                    - Age must be at least 18.
+                                </span>
+                            </div>
+                            <div class="col-sm-3">
+                                <button type="button" class="btn base-btn-danger"
+                                    (click)="removePerson(i)">Remove</button>
+                            </div>
+                        </div>
+                        <br />
+                        <h5 class="text-white">Skills</h5>
+                        <hr class="base-color-primary" />
+                        <div formArrayName="skills">
+                            <div *ngFor="let skill of getSkillsByPerson(i).controls; let j = index" [formGroupName]="j"
+                                [@fadeInOut]>
+                                <div class="row row-cols-lg-auto g-3 align-items-center">
+                                    <div class="col-sm-9">
+                                        <label [for]="'skillName' + j" class="visually-hidden">Name<span
+                                                class="required">*</span></label>
+                                        <input formControlName="skillName" class="form-control base-form-input"
+                                            [id]="'skillName' + j" placeholder="Skill name"
+                                            [class.input-ng-invalid]="!skill.get('skillName')?.valid && skill.get('skillName')?.touched">
+                                        <span *ngIf="!skill.get('skillName')?.valid && skill.get('skillName')?.touched"
+                                            class="required">Skill name is required</span>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <button type="button" (click)="removeSkill(i, j)"
+                                            class="btn base-btn-danger">Remove</button>
+                                    </div>
+                                </div>
+                                <br />
+                            </div>
+                        </div>
+                        <button type="button" class="btn base-btn-primary" (click)="addSkill(i)">Add Skill</button>
+                    </div>
+                </div>
+                <hr class="base-color-primary" />
+                <button class="btn base-btn-primary" [disabled]="!form.valid" style="width: 100%;">
+                    <span *ngIf="saving" class="spinner-border spinner-border-sm" role="status"
+                        aria-hidden="true"></span>
+                    Save</button>
+                <br />
+            </form>
+        </div>
+    </div>
+</ng-template>
